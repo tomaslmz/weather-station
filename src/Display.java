@@ -1,3 +1,3 @@
 public interface Display {
-    public void update();
+    public WeatherData update(float temperature, float humidity, float pressure);
 }
