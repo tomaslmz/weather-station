@@ -50,17 +50,17 @@ public class MainDisplay extends JFrame implements Display {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		txtTemperature = new JTextField();
+		txtTemperature = new JTextField("0");
 		txtTemperature.setBounds(29, 28, 86, 20);
 		contentPane.add(txtTemperature);
 		txtTemperature.setColumns(10);
 		
-		txtHumidity = new JTextField();
+		txtHumidity = new JTextField("0");
 		txtHumidity.setColumns(10);
 		txtHumidity.setBounds(29, 70, 86, 20);
 		contentPane.add(txtHumidity);
 		
-		txtPressure = new JTextField();
+		txtPressure = new JTextField("0");
 		txtPressure.setColumns(10);
 		txtPressure.setBounds(29, 109, 86, 20);
 		contentPane.add(txtPressure);
@@ -68,8 +68,12 @@ public class MainDisplay extends JFrame implements Display {
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WeatherData weatherData = update(Float.parseFloat(txtTemperature.getText()), Float.parseFloat(txtHumidity.getText()), Float.parseFloat(txtPressure.getText()));
-				JOptionPane.showMessageDialog(null, "Temperature: " + weatherData.getTemperature());
+				try {
+					WeatherData weatherData = update(Float.parseFloat(txtTemperature.getText()), Float.parseFloat(txtHumidity.getText()), Float.parseFloat(txtPressure.getText()));
+					JOptionPane.showMessageDialog(null, "Temperature: " + weatherData.getTemperature());
+				} catch(Exception err) {
+					JOptionPane.showMessageDialog(null, err.getMessage());
+				}
 			}
 		});
 		btnUpdate.setBounds(167, 69, 89, 23);
