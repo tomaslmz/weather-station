@@ -42,6 +42,12 @@ public class MainDisplay extends JFrame implements Display {
 	 * Create the frame.
 	 */
 	public MainDisplay() {
+		Updater updater = new Updater();
+		WeatherDataCentral weatherDataCentral = new WeatherDataCentral();
+		WeatherStation station1 = new WeatherStation();
+
+		updater.addSubscriber(weatherDataCentral);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 534, 335);
 		contentPane = new JPanel();
@@ -70,7 +76,12 @@ public class MainDisplay extends JFrame implements Display {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					WeatherData weatherData = update(Float.parseFloat(txtTemperature.getText()), Float.parseFloat(txtHumidity.getText()), Float.parseFloat(txtPressure.getText()));
-					JOptionPane.showMessageDialog(null, "Temperature: " + weatherData.getTemperature());
+
+					station1.setWeatherData(weatherData);
+					
+					updater.sendUpdate(station1.getWeatherData());
+
+					JOptionPane.showMessageDialog(null, "Temperature: " + weatherDataCentral.getData().getTemperature() + "\nHumidity: " + weatherDataCentral.getData().getHumidity() + "\nPressure: " + weatherDataCentral.getData().getPressure());
 				} catch(Exception err) {
 					JOptionPane.showMessageDialog(null, err.getMessage());
 				}

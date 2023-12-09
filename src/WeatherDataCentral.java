@@ -5,6 +5,10 @@ public class WeatherDataCentral {
         setData(data);
     }
 
+    public WeatherDataCentral() {
+    
+    }
+
     public void setData(WeatherData data) {
         this.data = data;
     }
