@@ -1,9 +1,16 @@
+package views;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import models.WeatherData;
+import models.WeatherDataCentral;
+import models.Updater;
+import models.WeatherStation;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -36,6 +43,15 @@ public class MainDisplay extends JFrame implements Display {
 	public WeatherData update(float temperature, float humidity, float pressure) {
 		WeatherData weatherData = new WeatherData(temperature, humidity, pressure);
 		return weatherData;
+	}
+
+	public static boolean isNumeric(String str) { 
+		try {  
+			Double.parseDouble(str);  
+			return true;
+		} catch(NumberFormatException e){  
+			return false;  
+		}  
 	}
 
 	/**
@@ -75,6 +91,10 @@ public class MainDisplay extends JFrame implements Display {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(!(isNumeric(txtTemperature.getText()) && isNumeric(txtHumidity.getText()) && isNumeric(txtPressure.getText()))) {
+						throw new Exception("Os valores devem conter apenas números!");
+					}
+
 					WeatherData weatherData = update(Float.parseFloat(txtTemperature.getText()), Float.parseFloat(txtHumidity.getText()), Float.parseFloat(txtPressure.getText()));
 
 					station1.setWeatherData(weatherData);

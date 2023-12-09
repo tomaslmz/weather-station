@@ -1,3 +1,4 @@
+package models;
 
 public class WeatherStation {
     private WeatherData weatherData;

@@ -1,3 +1,4 @@
+package models;
 public class WeatherData {
     private float temperature;
     private float humidity;

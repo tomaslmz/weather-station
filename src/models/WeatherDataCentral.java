@@ -1,3 +1,4 @@
+package models;
 public class WeatherDataCentral {
     private WeatherData data;
 
