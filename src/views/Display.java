@@ -4,5 +4,5 @@ import models.WeatherData;
 
 
 public interface Display {
-    public WeatherData update(float temperature, float humidity, float pressure);
+    public WeatherData update(float minTemp, float maxTemp, float humidity, float pressure);
 }

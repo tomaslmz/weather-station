@@ -1,11 +1,13 @@
 package models;
 public class WeatherData {
-    private float temperature;
+    private float minTemp;
+    private float maxTemp;
     private float humidity;
     private float pressure;
 
-    public WeatherData(float temperature, float humidity, float pressure) {
-        setTemperature(temperature);
+    public WeatherData(float minTemp, float maxTemp, float humidity, float pressure) {
+    	setMinTemp(minTemp);
+    	setMaxTemp(maxTemp);
         setHumidity(humidity);
         setPressure(pressure);
     }
@@ -14,12 +16,20 @@ public class WeatherData {
         
     }
 
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
+    public void setMinTemp(float minTemp) {
+    	this.minTemp = minTemp;
     }
-
-    public float getTemperature() {
-        return temperature;
+    
+    public float getMinTemp() {
+    	return minTemp;
+    }
+    
+    public void setMaxTemp(float maxTemp) {
+    	this.maxTemp = maxTemp;
+    }
+    
+    public float getMaxTemp() {
+    	return maxTemp;
     }
 
     public void setHumidity(float humidity) {
@@ -36,5 +46,9 @@ public class WeatherData {
 
     public float getPressure() {
         return pressure;
+    }
+    
+    public float getAverageTemp() {
+    	return (maxTemp+minTemp)/2;
     }
 }
